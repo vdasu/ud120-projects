@@ -1,4 +1,4 @@
-ud120-projects-python3
+ud120-projects
 ==============
 
 Solutions to Udacity Machine Learning course in Python3
