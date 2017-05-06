@@ -30,7 +30,22 @@ plt.show()
 
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
+from sklearn.ensemble import RandomForestClassifier as rfc
+from sklearn.ensemble import AdaBoostClassifier as abc
+from sklearn.neighbors import KNeighborsClassifier as knc
+from sklearn.metrics import accuracy_score
+from time import time
 
+#clf=rfc(min_samples_split=40,min_samples_leaf=10,max_depth=30,n_estimators=20)
+#clf=abc()
+clf=knc(n_neighbors=4)
+t0=time()
+clf.fit(features_train,labels_train)
+print ("Training time: ",round(time()-t0,3),"secs")
+t1=time()
+pred=clf.predict(features_test)
+print ("Prediction time: ",round(time()-t1,3),"secs")
+print (accuracy_score(pred,labels_test))
 
 
 
