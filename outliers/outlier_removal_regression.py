@@ -3,14 +3,14 @@
 import random
 import numpy
 import matplotlib.pyplot as plt
-import pickle
+import _pickle as pickle
 
 from outlier_cleaner import outlierCleaner
 
 
 ### load up some practice data with outliers in it
-ages = pickle.load( open("practice_outliers_ages.pkl", "r") )
-net_worths = pickle.load( open("practice_outliers_net_worths.pkl", "r") )
+ages = pickle.load( open("practice_outliers_ages.pkl", "rb") )
+net_worths = pickle.load( open("practice_outliers_net_worths.pkl", "rb") )
 
 
 
@@ -26,13 +26,13 @@ ages_train, ages_test, net_worths_train, net_worths_test = train_test_split(ages
 ### fill in a regression here!  Name the regression object reg so that
 ### the plotting code below works, and you can see what your regression looks like
 
+from sklearn.linear_model import LinearRegression as linreg
 
+reg=linreg()
+reg.fit(ages_train,net_worths_train)
 
-
-
-
-
-
+print ("Slope: ",reg.coef_)
+print ("Score: ",reg.score(ages_test,net_worths_test))
 
 
 
@@ -73,6 +73,8 @@ if len(cleaned_data) > 0:
         print("you don't seem to have regression imported/created,")
         print("   or else your regression object isn't named reg")
         print("   either way, only draw the scatter plot of the cleaned data")
+    print ("Cleaned Score: ",reg.score(ages_test,net_worths_test))
+    print ("Cleaned Slope: ",reg.coef_)
     plt.scatter(ages, net_worths)
     plt.xlabel("ages")
     plt.ylabel("net worths")
