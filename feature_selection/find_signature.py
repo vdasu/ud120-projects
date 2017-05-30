@@ -10,8 +10,8 @@ numpy.random.seed(42)
 ### mini-project.
 words_file = "../text_learning/your_word_data.pkl" 
 authors_file = "../text_learning/your_email_authors.pkl"
-word_data = pickle.load( open(words_file, "r"))
-authors = pickle.load( open(authors_file, "r") )
+word_data = pickle.load( open(words_file, "rb"))
+authors = pickle.load( open(authors_file, "rb") )
 
 
 
@@ -38,6 +38,16 @@ labels_train   = labels_train[:150]
 
 
 ### your code goes here
+from sklearn.tree import DecisionTreeClassifier as dtc
+from sklearn.metrics import accuracy_score
+clf = dtc()
+clf.fit(features_train,labels_train)
+pred = clf.predict(features_test)
+print ("Accuracy: ",accuracy_score(labels_test,pred))
+imp_features = clf.feature_importances_
 
-
+for i in imp_features:
+    if i>=0.2:
+        print ("Important feature: ",i," ",numpy.where(imp_features==i))
+#print ("Important word: ",vectorizer.get_feature_names()[14343])
 
