@@ -95,6 +95,7 @@ param_grid = {
 clf = GridSearchCV(SVC(kernel='rbf', class_weight='balanced'), param_grid)
 clf = clf.fit(X_train_pca, y_train)
 print("done in %0.3fs" % (time() - t0))
+print ("Explained variance ratio: ",pca.explained_variance_ratio_)
 print("Best estimator found by grid search:")
 print(clf.best_estimator_)
 
